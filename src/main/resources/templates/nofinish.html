@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>未完成订单</title>
+<link rel="stylesheet" href="/bootstrap.min.css">
+
+</head>
+
+<body>
+<div style="width:1000px;height:100% ;margin: auto;">
+<ul class="nav nav-tabs">
+  <li><a th:href="@{/index}">首页账单页面</a></li>
+  <li><a th:href="@{/neworder}">新增账单</a></li>
+  <li class="active"><a th:href="@{/honey/nofishin}">未结清订单</a></li>
+  <li><a th:href="@{/honey/backComsumer}">统计分布</a></li>
+  <li><a href="#">Java</a></li>
+  <li><a href="#">PHP</a></li>
+</ul>
+<table class="table table-striped">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th>订单编号</th>
+      <th>买家姓名</th>
+      <th>下单时间</th>
+      <th>下单地点</th>
+      <th>下单数量/斤</th>
+      <th>成交金额/元</th>
+      <th>成交状态</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="nofinishlist : ${nofinishlist}">
+      <td th:text="${nofinishlist.getThingsID()}"></td>
+      <td th:text="${nofinishlist.getHoney_buyer()}"></td>
+      <td th:text="${nofinishlist.getHoney_buy_time()}"></td>
+      <td th:text="${nofinishlist.getHoney_buyer_area()}"></td>
+      <td th:text="${nofinishlist.getHoney_buyer_secarea()}"></td>
+      <td th:text="${nofinishlist.getHoney_weight()}"></td>
+      <td th:text="${nofinishlist.getHoney_price()}"></td>
+      <td th:text="${nofinishlist.getHoney_setle()}"></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

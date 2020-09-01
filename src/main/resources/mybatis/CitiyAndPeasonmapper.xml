@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CitiyAndPeasonMapper">
+
+<!-- int adpeaToCitiy(String  son_city,int to_city_id,int peasonum);
+	List<CitiyAndPeason> selectCitiy(String citiy,String soncitiy); -->
+
+<select id="selectCitiy" resultType="Integer">
+
+SELECT to_city_id FROM  son_city  where son_city=#{son_city} and to_city_id=(SELECT citiy_id FROM city where Citiy= #{Citiy});
+
+</select>	
+
+<update id="adpeaToCitiy" parameterType="com.example.entity.CitiyAndPeason">
+
+update  son_city set peason_num = #{peason_num} where son_city=#{son_city} and to_city_id=(SELECT citiy_id FROM city where Citiy= #{Citiy});
+
+</update>
+
+<!-- int getnewScitiy(String  son_city,int to_city_id,int peasonum); -->
+<insert id="getnewScitiy" parameterType="com.example.entity.CitiyAndPeason">
+insert into son_city (son_city,peason_num,to_city_id) value(#{son_city},#{peason_num},#{to_city_id});
+</insert>
+
+
+
+</mapper>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>添加一个订单</title>
+<link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+<div style="width:1000px;height:100% ;margin: auto;">
+<ul class="nav nav-tabs">
+  <li><a th:href="@{/index}">首页账单页面</a></li>
+  <li class="active"><a th:href="@{/neworder}">新增账单</a></li>
+  <li><a th:href="@{/honey/nofishin}">未结清订单</a></li>
+  <li><a th:href="@{/honey/backComsumer}">统计分布</a></li>
+  <li><a href="#">Java</a></li>
+  <li><a href="#">PHP</a></li>
+</ul>
+<div id="editTeachers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">添加新的订单信息</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" id="edit_order" th:action="@{/honey/addneworder}" method="post">
+						<div class="form-group">
+						<label for="edit_ThingsID" class="col-sm-2 control-label">订单编号</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="ThingsID" placeholder="订单编号" name="ThingsID"/>
+						</div>
+					</div>
+						<div class="form-group">
+						<label for="edit_Honey_buyer" class="col-sm-2 control-label">买家姓名</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Honey_buyer" placeholder="买家姓名" name="Honey_buyer"  />
+						</div>
+					</div>
+						<div class="form-group">
+						<label for="edit_Honey_buy_time" class="col-sm-2 control-label">下单时间</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Honey_buy_time" placeholder="填写规格为xxxx-xx-xx" name="Honey_buy_time"  />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="edit_Honey_buyer_area" class="col-sm-2 control-label">下单地点</label>
+						<!-- <div class="col-sm-10">
+							<input type="text" class="form-control" id="Honey_buyer_area" placeholder="填写省份/直辖市/自治区" name="Honey_buyer_area"  />
+						</div> -->
+						<div class="col-sm-10">
+							<select  class="form-control" id ="Honey_buyer_area" name="Honey_buyer_area">
+								<option th:each="citis : ${citis}" th:text="${citis.getCitiy()}"
+									th:value="${citis.getCitiy()}"></option>
+							</select>
+						</div> 
+					</div>
+					<div class="form-group">
+						<label for="edit_Honey_buyer_secarea" class="col-sm-2 control-label">二级城市</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Honey_buyer_secarea" placeholder="省级下方二级城市" name="Honey_buyer_secarea"  />
+						</div>
+					</div>
+						<div class="form-group">
+						<label for="edit_Honey_weight" class="col-sm-2 control-label">下单数量</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Honey_weight" placeholder="下单数量" name="Honey_weight"  />
+						</div>
+					</div>
+						<div class="form-group">
+						<label for="edit_Honey_price" class="col-sm-2 control-label">成交金额</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Honey_price" placeholder="成交金额" name="Honey_price"  />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="edit_Honey_setle" class="col-sm-2 control-label">成交状态</label>
+						<!-- <div class="col-sm-10"> -->
+							<input type="radio"  id="Honey_setle" value="已结清" name="Honey_setle">已结清</input>
+							<input type="radio"  id="Honey_setle" value="未结清" name="Honey_setle">未结清</input>
+						<!-- </div> -->
+					</div>
+					<div class="modal-footer">
+						<a th:href="@{/index}"><button type="button" class="btn btn-default" >返回首页</button></a>
+						<button type="submit" class="btn btn-primary" >保存</button>
+					</div>
+				</form>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+</div>	
+</body>
+</html>

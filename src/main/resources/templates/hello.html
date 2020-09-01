@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>蜂蜜出纳明细系统首页</title>
+<link rel="stylesheet" href="/bootstrap.min.css">
+
+
+</style>
+</head>
+
+<body>
+<div style="width:1000px;height:100% ;margin: auto;">
+<ul class="nav nav-tabs">
+  <li class="active"><a th:href="@{/index}">首页账单页面</a></li>
+  <li><a th:href="@{/neworder}">新增账单</a></li>
+  <li><a th:href="@{/honey/nofishin}">未结清订单</a></li>
+  <li><a th:href="@{/honey/backComsumer}">统计分布</a></li>
+  <li><a href="">Java</a></li>
+  <li><a href="#">PHP</a></li>
+</ul>
+<div style="width: 1000px;height: 500px">
+<table class="table table-striped">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th>订单编号</th>
+      <th>买家姓名</th>
+      <th>下单时间</th>
+      <th>下单地点</th>
+      <th>二级城市</th>
+      <th>下单数量/斤</th>
+      <th>成交金额/元</th>
+      <th>成交状态</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="orderlist : ${orderlist}">
+      <td th:text="${orderlist.getThingsID()}"></td>
+      <td th:text="${orderlist.getHoney_buyer()}"></td>
+      <td th:text="${orderlist.getHoney_buy_time()}"></td>
+      <td th:text="${orderlist.getHoney_buyer_area()}"></td>
+      <td th:text="${orderlist.getHoney_buyer_secarea()}"></td>
+      <td th:text="${orderlist.getHoney_weight()}"></td>
+      <td th:text="${orderlist.getHoney_price()}"></td>
+      <td th:text="${orderlist.getHoney_setle()}"></td>
+      <td><a th:href="@{/honey/delet/{orderlist}(orderlist=${orderlist})}"><button type="button" class="btn btn-default" >删除</button></a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div style="width: 500px;height: 50px;margin: auto;">
+<nav aria-label="Page navigation">
+  <ul class="pagination" >
+    <li>
+      <a th:href="@{/lastpage/{currentpage}/{pageNum}(currentpage=${currentpage}-1,pageNum=${pageNum})}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>   
+
+		<li th:each="i:${#numbers.sequence(1,pageNum)}">
+		
+			<a th:href="@{/Gotopage/{pageNum}(pageNum=${i})}" th:text="${i}"></a>
+		
+		</li>
+
+    <li>
+      <a th:href="@{/nextpage/{currentpage}/{pageNum}(currentpage=${currentpage}+1,pageNum=${pageNum})}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>统计分布</title>
+<link rel="stylesheet" href="/bootstrap.min.css">
+<script src="/echarts.min.js"></script>
+</head>
+<body>
+<div style="width:1000px;height:100% ;margin: auto;">
+<ul class="nav nav-tabs">
+  <li><a th:href="@{/index}">首页账单页面</a></li>
+  <li><a th:href="@{/neworder}">新增账单</a></li>
+  <li><a th:href="@{/honey/nofishin}">未结清订单</a></li>
+  <li class="active"><a th:href="@{/honey/backComsumer}">统计分布</a></li>
+  <li><a href="#">Java</a></li>
+  <li><a href="#">PHP</a></li>
+</ul>
+回头客
+
+
+
+
+
+<div id="main" style="width: 600px;height:400px;"></div>
+
+<script th:inline="javascript">
+
+var myChart = echarts.init(document.getElementById('main'));
+
+var pname = [[${provinc_name}]];
+var pnum  = [[${provinc_num}]];
+pnames = JSON.parse(pname);
+pnums = JSON.parse(pnum);
+var provincname =[];
+var provincnum =[]
+for(var i in pnames){
+  　
+	provincname.push(pnames[i]);
+}
+for(var i in pnums){
+	  　
+	provincnum.push(pnums[i]);
+	}
+console.log(pnums);
+
+
+var  option = {
+ 		    color: ['#3398DB'],
+ 		    tooltip: {
+ 		        trigger: 'axis',
+ 		        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+ 		            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+ 		        }
+ 		    },
+ 		    grid: {
+ 		        left: '3%',
+ 		        right: '4%',
+ 		        bottom: '1%',
+ 		        containLabel: true
+ 		    },
+ 		    xAxis: [
+ 		        {
+ 		            type: 'category',
+ 		            data: provincname,
+ 		            
+ 		            
+ 		            axisTick: {
+ 		                alignWithLabel: true
+ 		            }
+ 		        }
+ 		    ],
+ 		    yAxis: [
+ 		        {
+ 		            type: 'value'
+ 		        }
+ 		    ],
+ 		    series: [
+ 		        {
+ 		            name: '直接访问',
+ 		            type: 'bar',
+ 		            barWidth: '60%',
+ 		            data: provincnum
+ 		            
+ 		        }
+ 		    ]
+ 		};
+     // 使用刚指定的配置项和数据显示图表。
+     myChart.setOption(option);
+</script>
+
+</div>
+</body>
+</html>

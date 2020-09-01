@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.HoneyGoodMapper">
+
+<select id="selectPeasonNum" resultType="Integer">
+
+	select  COUNT(*) FROM order_information;
+
+</select>
+
+
+ <select id="selectAll" resultType="com.example.entity.HoneyGood">
+ select * from order_information 
+ </select>
+ 
+ <select id="selectwjq" resultType="com.example.entity.HoneyGood">
+ select * from order_information where Honey_setle=#{Honey_setle}
+ </select>
+ 
+ <delete id="deletorder" parameterType="com.example.entity.HoneyGood">
+ delete from order_information where ThingsID = #{ThingsID}
+ 
+ </delete>
+ 
+ <insert id="addneworder" parameterType="com.example.entity.HoneyGood">
+ 
+ 	insert into order_information(
+ 		ThingsID,
+ 		Honey_weight,
+ 		Honey_price,
+ 		Honey_buyer,
+ 		Honey_buy_time,
+ 		Honey_buyer_area,
+ 		Honey_buyer_secarea,
+ 		Honey_setle
+ 	)
+ 	
+ 	value(
+ 		#{ThingsID},
+ 		#{Honey_weight},
+ 		#{Honey_price},
+ 		#{Honey_buyer},
+ 		#{Honey_buy_time},
+ 		#{Honey_buyer_area},
+ 		#{Honey_buyer_secarea},
+ 		#{Honey_setle}
+
+ 	)
+ </insert>
+</mapper>

@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/mqq?serverTimezone=UTC
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 192.168.1.98
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+#  resources:
+#    static-locations:
+#    - classpath:/static/
+#  mvc:
+#    static-path-pattern: /**
+##spring.resources.static-locations=classpath:/templates/,classpath:/static/
+
+mybatis:
+  mapper-locations:
+  - classpath*:/mybatis/*.xml
+logging:
+  level: 
+    com.example.mapper: debug
+    
+   
