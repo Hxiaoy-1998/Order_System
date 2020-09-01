@@ -35,7 +35,7 @@ import com.example.entity.*;
 @Controller
 @SuppressWarnings("all")
 public class HoneyGoodcontroller {
-	
+	//对文件做出修改
 	@Autowired
 	private StringRedisTemplate mystringtemplate;
 	
